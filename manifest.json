@@ -1,0 +1,11 @@
+{
+   "content_scripts": [ {
+      "js": [ "main.js" ],
+      "matches": [ "https://github.com/*"]
+   } ],
+   "description": "GitHub - VSCode",
+   "manifest_version": 2,
+   "name": "GitHub - VSCode",
+   "short_name": "GHVSCode",
+   "version": "1.0.0"
+}
