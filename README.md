@@ -35,7 +35,7 @@ Adds useful buttons on repos' homepage to clone in VSCode or open in GitHub1s.
 
 ## Preview
 
-![Preview](https://s2.gifyu.com/images/preview-repo.gif)
+![Preview](https://s2.gifyu.com/images/preview-repo21a47ec3d564d16a.gif)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
