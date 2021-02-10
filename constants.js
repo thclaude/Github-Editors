@@ -1,6 +1,10 @@
+const getFullIconURL = (iconName) => {
+  return chrome.runtime.getURL(ICONS_PATH + iconName);
+};
+
 const ICONS_PATH = "/img/icons/";
 
 const ICONS = {
-  github: "github-icon.png",
-  vscode: "vscode-icon.png",
+  github: getFullIconURL("github-icon.png"),
+  vscode: getFullIconURL("vscode-icon.png"),
 };

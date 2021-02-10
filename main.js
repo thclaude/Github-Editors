@@ -48,7 +48,7 @@ const generateButton = (flatSide, image, link, tooltipText) => {
     "tooltipped-s"
   );
 
-  linkIcon.src = chrome.runtime.getURL(ICONS_PATH + image);
+  linkIcon.src = image;
   linkIcon.width = "16";
   linkIcon.height = "16";
 
