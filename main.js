@@ -35,16 +35,19 @@ const getCodeButton = () => {
   return lastNavbarChild;
 };
 
-const generateButton = (flatSide, image, link) => {
+const generateButton = (flatSide, image, link, tooltipText) => {
   const linkElement = document.createElement("a");
   linkElement.classList.add(
     "btn",
     "d-flex",
     "flex-items-center",
-    `rounded-${flatSide}-0`
+    `rounded-${flatSide}-0`,
+    "tooltipped",
+    "tooltipped-s"
   );
   linkElement.innerHTML = `<img src="${image}" width="16" height="16" />`;
   linkElement.href = link;
+  linkElement.setAttribute("aria-label", tooltipText);
 
   return linkElement;
 };
@@ -57,12 +60,14 @@ const generateButtonsGroup = () => {
   const leftButton = generateButton(
     "right",
     chrome.runtime.getURL("/img/vscode-icon.png"),
-    getCloneURL()
+    getCloneURL(),
+    "Clone in VSCode"
   );
   const rightButton = generateButton(
     "left",
     chrome.runtime.getURL("/img/github-icon.png"),
-    getViewURL()
+    getViewURL(),
+    "Open in GitHub1s"
   );
 
   buttonsGroup.append(leftButton);
