@@ -1,6 +1,6 @@
 {
    "content_scripts": [ {
-      "js": [ "main.js" ],
+      "js": [ "constants.js", "main.js" ],
       "matches": [ "https://github.com/*"]
    } ],
    "description": "Adds useful buttons on repos' homepage to clone in VSCode or open in GitHub1s",
@@ -9,7 +9,7 @@
    "short_name": "GHVSCode",
    "version": "0.0.1",
    "web_accessible_resources": [
-      "img/*"
+      "img/*", "img/icons/*"
    ],
    "icons": {
       "128": "img/logo.png",

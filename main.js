@@ -1,4 +1,4 @@
-﻿const getRepoURL = () => {
+const getRepoURL = () => {
   return window.location.href;
 };
 
@@ -59,13 +59,13 @@ const generateButtonsGroup = () => {
 
   const leftButton = generateButton(
     "right",
-    chrome.runtime.getURL("/img/vscode-icon.png"),
+    ICONS.vscode,
     getCloneURL(),
     "Clone in VSCode"
   );
   const rightButton = generateButton(
     "left",
-    chrome.runtime.getURL("/img/github-icon.png"),
+    ICONS.github,
     getViewURL(),
     "Open in GitHub1s"
   );
