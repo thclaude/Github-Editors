@@ -4,6 +4,8 @@ const getFullIconURL = (iconName) => {
 
 const DEFAULT_LANGUAGE = "java";
 
+const LANGUAGE_REGEX = /([a-zA-Z+-+]*) [0-9.]*/;
+
 const JETBRAINS_CLONE_URL =
   "jetbrains://{tag}/checkout/git?checkout.repo={url}&idea.required.plugins.id=Git4Idea";
 

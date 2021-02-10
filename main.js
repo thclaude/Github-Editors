@@ -2,6 +2,42 @@
   return window.location.href;
 };
 
+const getRepoLanguages = () => {
+  const progressBar = document.querySelector(
+    ".Progress:not(.progress-pjax-loader)"
+  );
+  if (!progressBar) return DEFAULT_LANGUAGE;
+  const languages = Array.from(progressBar.children).map(
+    (elem) => elem.ariaLabel
+  );
+  return languages.map((lang) => lang.replace(LANGUAGE_REGEX, "$1"));
+};
+
+const getCorrespondingIDE = (language) => {
+  const mainLanguage = language.toLowerCase();
+  if (!Object.keys(IDE_LANGUAGES).includes(mainLanguage))
+    return IDE_LANGUAGES[DEFAULT_LANGUAGE];
+  return IDE_LANGUAGES[mainLanguage];
+};
+
+const getJetbrainsIDELabels = () => {
+  const repoLanguages = getRepoLanguages();
+  const jetbrainsIDELabels = new Set();
+  for (let language of repoLanguages) {
+    const correspondingIde = getCorrespondingIDE(language);
+    correspondingIde.forEach((ide) => jetbrainsIDELabels.add(ide));
+  }
+  return jetbrainsIDELabels;
+};
+
+const getJetbrainsURL = (tag) => {
+  const currentRepo = getRepoURL();
+  return JETBRAINS_CLONE_URL.replace("{tag}", tag).replace(
+    "{url}",
+    `${currentRepo}.git`
+  );
+};
+
 const getCloneURL = () => {
   const currentRepo = getRepoURL();
   return `vscode://vscode.git/clone?url=${currentRepo}.git`;
@@ -43,7 +79,7 @@ const generateButton = (flatSide, image, link, tooltipText) => {
     "btn",
     "d-flex",
     "flex-items-center",
-    `rounded-${flatSide}-0`,
+    flatSide === "all" ? "rounded-0" : `rounded-${flatSide}-0`,
     "tooltipped",
     "tooltipped-s"
   );
@@ -60,6 +96,7 @@ const generateButton = (flatSide, image, link, tooltipText) => {
 };
 
 const generateButtonsGroup = () => {
+  const jetbrainsIDELabels = getJetbrainsIDELabels();
   const buttonsGroup = document.createElement("div");
   buttonsGroup.classList.add("ml-2", "mr-2", "d-inline-flex");
   buttonsGroup.id = "vscgh-buttons";
@@ -78,6 +115,18 @@ const generateButtonsGroup = () => {
   );
 
   buttonsGroup.append(leftButton);
+
+  for (let ideLabel of jetbrainsIDELabels) {
+    const currentTool = JETBRAINS_TOOLS[ideLabel];
+    const ideButton = generateButton(
+      "all",
+      currentTool.icon,
+      getJetbrainsURL(currentTool.tag),
+      `Clone in ${currentTool.name}`
+    );
+    buttonsGroup.append(ideButton);
+  }
+
   buttonsGroup.append(rightButton);
 
   return buttonsGroup;
