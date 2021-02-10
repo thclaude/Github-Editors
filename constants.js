@@ -2,6 +2,9 @@ const getFullIconURL = (iconName) => {
   return chrome.runtime.getURL(ICONS_PATH + iconName);
 };
 
+const JETBRAINS_CLONE_URL =
+  "jetbrains://{tag}/checkout/git?checkout.repo={url}&idea.required.plugins.id=Git4Idea";
+
 const ICONS_PATH = "/img/icons/";
 
 const ICONS = {
