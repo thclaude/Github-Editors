@@ -2,6 +2,8 @@ const getFullIconURL = (iconName) => {
   return chrome.runtime.getURL(ICONS_PATH + iconName);
 };
 
+const DEFAULT_LANGUAGE = "java";
+
 const JETBRAINS_CLONE_URL =
   "jetbrains://{tag}/checkout/git?checkout.repo={url}&idea.required.plugins.id=Git4Idea";
 
