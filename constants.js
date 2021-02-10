@@ -4,6 +4,19 @@ const getFullIconURL = (iconName) => {
   return chrome.runtime.getURL(ICONS_PATH + iconName);
 };
 
+const showJetbrainsButtons = () => {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get(
+      {
+        showJetbrainsButtons: true,
+      },
+      (items) => {
+        resolve(items.showJetbrainsButtons);
+      }
+    );
+  });
+};
+
 const MINIMUM_PERCENTAGE = 5.0;
 
 const DEFAULT_LANGUAGE = "java";

@@ -100,8 +100,23 @@ const generateButton = (flatSide, image, link, tooltipText) => {
   return linkElement;
 };
 
-const generateButtonsGroup = () => {
+const generateJetbrainsButtons = () => {
+  const jetbrainsButtons = [];
   const jetbrainsIDELabels = getJetbrainsIDELabels();
+  for (let ideLabel of jetbrainsIDELabels) {
+    const currentTool = JETBRAINS_TOOLS[ideLabel];
+    const jetbrainsButton = generateButton(
+      "all",
+      currentTool.icon,
+      getJetbrainsURL(currentTool.tag),
+      `Clone in ${currentTool.name}`
+    );
+    jetbrainsButtons.push(jetbrainsButton);
+  }
+  return jetbrainsButtons;
+};
+
+const generateButtonsGroup = (showJbButtons) => {
   const buttonsGroup = document.createElement("div");
   buttonsGroup.classList.add("ml-2", "mr-2", "d-inline-flex");
   buttonsGroup.id = "vscgh-buttons";
@@ -121,15 +136,11 @@ const generateButtonsGroup = () => {
 
   buttonsGroup.append(leftButton);
 
-  for (let ideLabel of jetbrainsIDELabels) {
-    const currentTool = JETBRAINS_TOOLS[ideLabel];
-    const ideButton = generateButton(
-      "all",
-      currentTool.icon,
-      getJetbrainsURL(currentTool.tag),
-      `Clone in ${currentTool.name}`
+  if (showJbButtons) {
+    const jetbrainsButtons = generateJetbrainsButtons();
+    jetbrainsButtons.forEach((jetbrainsButton) =>
+      buttonsGroup.append(jetbrainsButton)
     );
-    buttonsGroup.append(ideButton);
   }
 
   buttonsGroup.append(rightButton);
@@ -137,10 +148,12 @@ const generateButtonsGroup = () => {
   return buttonsGroup;
 };
 
-const insertButtons = () => {
+const insertButtons = async () => {
   const button = getCodeButton();
   if (button && !isAlreadyAdded()) {
-    button.prepend(generateButtonsGroup());
+    const showJbButtons = await showJetbrainsButtons();
+    const buttonsGroup = generateButtonsGroup(showJbButtons);
+    button.prepend(buttonsGroup);
   }
 };
 
