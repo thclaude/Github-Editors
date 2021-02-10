@@ -1,4 +1,4 @@
-const getRepoURL = () => {
+﻿const getRepoURL = () => {
   return window.location.href;
 };
 
@@ -14,6 +14,13 @@ const getViewURL = () => {
 
 const getCodeButton = () => {
   const navbar = document.querySelector(".file-navigation");
+  if (!navbar) return null;
+  const lastNavbarChild = navbar.lastElementChild;
+  if (
+    !lastNavbarChild.lastElementChild || // check if there is child
+    lastNavbarChild.lastElementChild.tagName !== "GET-REPO" // check if we are @ repo homepage
+  )
+    return null;
   return navbar.lastElementChild;
 };
 
@@ -52,8 +59,25 @@ const generateButtonsGroup = () => {
   return buttonsGroup;
 };
 
-const button = getCodeButton();
+const insertButtons = () => {
+  const button = getCodeButton();
+  if (button) {
+    button.prepend(generateButtonsGroup());
+  }
+};
 
-if (button) {
-  button.prepend(generateButtonsGroup());
+const isReady = () => {
+  const readyState = document.readyState;
+  return readyState === "interactive" || readyState === "complete";
+};
+
+if (isReady()) {
+  insertButtons();
+} else {
+  document.addEventListener("DOMContentLoaded", insertButtons());
 }
+
+// https://stackoverflow.com/a/39628037
+document.addEventListener("pjax:end", () => {
+  insertButtons();
+});
