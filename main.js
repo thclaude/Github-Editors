@@ -1,4 +1,4 @@
-const getRepoURL = () => {
+﻿const getRepoURL = () => {
   return window.location.href;
 };
 
@@ -36,7 +36,9 @@ const getCodeButton = () => {
 };
 
 const generateButton = (flatSide, image, link, tooltipText) => {
+  const linkIcon = document.createElement("img");
   const linkElement = document.createElement("a");
+
   linkElement.classList.add(
     "btn",
     "d-flex",
@@ -45,7 +47,12 @@ const generateButton = (flatSide, image, link, tooltipText) => {
     "tooltipped",
     "tooltipped-s"
   );
-  linkElement.innerHTML = `<img src="${image}" width="16" height="16" />`;
+
+  linkIcon.src = chrome.runtime.getURL(ICONS_PATH + image);
+  linkIcon.width = "16";
+  linkIcon.height = "16";
+
+  linkElement.append(linkIcon);
   linkElement.href = link;
   linkElement.setAttribute("aria-label", tooltipText);
 
