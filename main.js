@@ -10,7 +10,12 @@ const getRepoLanguages = () => {
   const languages = Array.from(progressBar.children).map(
     (elem) => elem.ariaLabel
   );
-  return languages.map((lang) => lang.replace(LANGUAGE_REGEX, "$1"));
+
+  const filteredLanguages = languages.filter((label) => {
+    const languagePercentage = parseFloat(label.match(LANGUAGE_REGEX)[2]);
+    return languagePercentage >= MINIMUM_PERCENTAGE;
+  });
+  return filteredLanguages.map((lang) => lang.replace(LANGUAGE_REGEX, "$1"));
 };
 
 const getCorrespondingIDE = (language) => {

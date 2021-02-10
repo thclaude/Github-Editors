@@ -1,15 +1,17 @@
+const ICONS_PATH = "/img/icons/";
+
 const getFullIconURL = (iconName) => {
   return chrome.runtime.getURL(ICONS_PATH + iconName);
 };
 
+const MINIMUM_PERCENTAGE = 5.0;
+
 const DEFAULT_LANGUAGE = "java";
 
-const LANGUAGE_REGEX = /([a-zA-Z+-+]*) [0-9.]*/;
+const LANGUAGE_REGEX = /([a-zA-Z+-+]*) ([0-9.]*)/;
 
 const JETBRAINS_CLONE_URL =
   "jetbrains://{tag}/checkout/git?checkout.repo={url}&idea.required.plugins.id=Git4Idea";
-
-const ICONS_PATH = "/img/icons/";
 
 const ICONS = {
   github: getFullIconURL("github-icon.png"),
