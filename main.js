@@ -1,4 +1,4 @@
-﻿const getRepoURL = () => {
+const getRepoURL = () => {
   return window.location.href;
 };
 
@@ -37,12 +37,12 @@ const generateButtonsGroup = () => {
 
   const leftButton = generateButton(
     "right",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1024px-Visual_Studio_Code_1.35_icon.svg.png",
+    chrome.runtime.getURL("/img/vscode-icon.png"),
     getCloneURL()
   );
   const rightButton = generateButton(
     "left",
-    "https://www.clipartmax.com/png/middle/48-483031_github-logo-black-and-white-github-icon-vector.png",
+    chrome.runtime.getURL("/img/github-icon.png"),
     getViewURL()
   );
 
