@@ -10,5 +10,10 @@
    "version": "1.0.0",
    "web_accessible_resources": [
       "img/*"
-   ]
+   ],
+   "icons": {
+      "128": "img/logo.png",
+      "16": "img/logo.png",
+      "48": "img/logo.png"
+   }
 }
