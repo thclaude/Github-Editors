@@ -12,16 +12,27 @@ const getViewURL = () => {
   return currentRepo.replace("github", "github1s");
 };
 
-const getCodeButton = () => {
+const getNavbarLastElementChild = () => {
   const navbar = document.querySelector(".file-navigation");
   if (!navbar) return null;
-  const lastNavbarChild = navbar.lastElementChild;
+  return navbar.lastElementChild;
+};
+
+const isAlreadyAdded = () => {
+  const lastNavbarChild = getNavbarLastElementChild();
+  if (!lastNavbarChild) return null;
+  return lastNavbarChild.querySelector("#vscgh-buttons") !== null;
+};
+
+const getCodeButton = () => {
+  const lastNavbarChild = getNavbarLastElementChild();
+  if (!lastNavbarChild) return null;
   if (
     !lastNavbarChild.lastElementChild || // check if there is child
     lastNavbarChild.lastElementChild.tagName !== "GET-REPO" // check if we are @ repo homepage
   )
     return null;
-  return navbar.lastElementChild;
+  return lastNavbarChild;
 };
 
 const generateButton = (flatSide, image, link) => {
@@ -41,6 +52,7 @@ const generateButton = (flatSide, image, link) => {
 const generateButtonsGroup = () => {
   const buttonsGroup = document.createElement("div");
   buttonsGroup.classList.add("ml-2", "mr-2", "d-inline-flex");
+  buttonsGroup.id = "vscgh-buttons";
 
   const leftButton = generateButton(
     "right",
@@ -61,7 +73,7 @@ const generateButtonsGroup = () => {
 
 const insertButtons = () => {
   const button = getCodeButton();
-  if (button) {
+  if (button && !isAlreadyAdded()) {
     button.prepend(generateButtonsGroup());
   }
 };
