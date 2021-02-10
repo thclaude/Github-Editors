@@ -3,7 +3,7 @@
       "js": [ "main.js" ],
       "matches": [ "https://github.com/*"]
    } ],
-   "description": "GitHub - VSCode",
+   "description": "Adds useful buttons on repos' homepage to clone in VSCode or open in GitHub1s",
    "manifest_version": 2,
    "name": "GitHub - VSCode",
    "short_name": "GHVSCode",
