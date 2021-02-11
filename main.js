@@ -124,7 +124,7 @@ const generateJetbrainsButtons = () => {
 
 const generateButtonsGroup = (showJbButtons) => {
   const buttonsGroup = document.createElement("div");
-  buttonsGroup.classList.add("ml-2", "mr-2", "d-inline-flex", "BtnGroup");
+  buttonsGroup.classList.add("mr-2", "d-inline-flex", "BtnGroup");
   buttonsGroup.id = "ghe-buttons";
 
   const vscodeButton = generateButton(
