@@ -2,6 +2,47 @@
   return window.location.href;
 };
 
+const getRepoLanguages = () => {
+  const progressBar = document.querySelector(
+    ".Progress:not(.progress-pjax-loader)"
+  );
+  if (!progressBar) return DEFAULT_LANGUAGE;
+  const languages = Array.from(progressBar.children).map(
+    (elem) => elem.ariaLabel
+  );
+
+  const filteredLanguages = languages.filter((label) => {
+    const languagePercentage = parseFloat(label.match(LANGUAGE_REGEX)[2]);
+    return languagePercentage >= MINIMUM_PERCENTAGE;
+  });
+  return filteredLanguages.map((lang) => lang.replace(LANGUAGE_REGEX, "$1"));
+};
+
+const getCorrespondingIDE = (language) => {
+  const mainLanguage = language.toLowerCase();
+  if (!Object.keys(IDE_LANGUAGES).includes(mainLanguage))
+    return IDE_LANGUAGES[DEFAULT_LANGUAGE];
+  return IDE_LANGUAGES[mainLanguage];
+};
+
+const getJetbrainsIDELabels = () => {
+  const repoLanguages = getRepoLanguages();
+  const jetbrainsIDELabels = new Set();
+  for (let language of repoLanguages) {
+    const correspondingIde = getCorrespondingIDE(language);
+    correspondingIde.forEach((ide) => jetbrainsIDELabels.add(ide));
+  }
+  return jetbrainsIDELabels;
+};
+
+const getJetbrainsURL = (tag) => {
+  const currentRepo = getRepoURL();
+  return JETBRAINS_CLONE_URL.replace("{tag}", tag).replace(
+    "{url}",
+    `${currentRepo}.git`
+  );
+};
+
 const getCloneURL = () => {
   const currentRepo = getRepoURL();
   return `vscode://vscode.git/clone?url=${currentRepo}.git`;
@@ -44,7 +85,7 @@ const generateButton = (flatSide, image, link, tooltipText) => {
     "BtnGroup-item",
     "d-flex",
     "flex-items-center",
-    `rounded-${flatSide}-0`,
+    flatSide === "all" ? "rounded-0" : `rounded-${flatSide}-0`,
     "tooltipped",
     "tooltipped-s"
   );
@@ -60,7 +101,23 @@ const generateButton = (flatSide, image, link, tooltipText) => {
   return linkElement;
 };
 
-const generateButtonsGroup = () => {
+const generateJetbrainsButtons = () => {
+  const jetbrainsButtons = [];
+  const jetbrainsIDELabels = getJetbrainsIDELabels();
+  for (let ideLabel of jetbrainsIDELabels) {
+    const currentTool = JETBRAINS_TOOLS[ideLabel];
+    const jetbrainsButton = generateButton(
+      "all",
+      currentTool.icon,
+      getJetbrainsURL(currentTool.tag),
+      `Clone in ${currentTool.name}`
+    );
+    jetbrainsButtons.push(jetbrainsButton);
+  }
+  return jetbrainsButtons;
+};
+
+const generateButtonsGroup = (showJbButtons) => {
   const buttonsGroup = document.createElement("div");
   buttonsGroup.classList.add("ml-2", "mr-2", "d-inline-flex", "BtnGroup");
   buttonsGroup.id = "vscgh-buttons";
@@ -79,15 +136,25 @@ const generateButtonsGroup = () => {
   );
 
   buttonsGroup.append(leftButton);
+
+  if (showJbButtons) {
+    const jetbrainsButtons = generateJetbrainsButtons();
+    jetbrainsButtons.forEach((jetbrainsButton) =>
+      buttonsGroup.append(jetbrainsButton)
+    );
+  }
+
   buttonsGroup.append(rightButton);
 
   return buttonsGroup;
 };
 
-const insertButtons = () => {
+const insertButtons = async () => {
   const button = getCodeButton();
   if (button && !isAlreadyAdded()) {
-    button.prepend(generateButtonsGroup());
+    const showJbButtons = await showJetbrainsButtons();
+    const buttonsGroup = generateButtonsGroup(showJbButtons);
+    button.prepend(buttonsGroup);
   }
 };
 
