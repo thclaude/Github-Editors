@@ -29,6 +29,7 @@ const JETBRAINS_CLONE_URL =
 const ICONS = {
   github: getFullIconURL("github-icon.png"),
   vscode: getFullIconURL("vscode-icon.png"),
+  codesandbox: getFullIconURL("codesandbox-icon.png"),
 };
 
 const JETBRAINS_TOOLS = {
