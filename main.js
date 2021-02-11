@@ -41,6 +41,7 @@ const generateButton = (flatSide, image, link, tooltipText) => {
 
   linkElement.classList.add(
     "btn",
+    "BtnGroup-item",
     "d-flex",
     "flex-items-center",
     `rounded-${flatSide}-0`,
@@ -61,7 +62,7 @@ const generateButton = (flatSide, image, link, tooltipText) => {
 
 const generateButtonsGroup = () => {
   const buttonsGroup = document.createElement("div");
-  buttonsGroup.classList.add("ml-2", "mr-2", "d-inline-flex");
+  buttonsGroup.classList.add("ml-2", "mr-2", "d-inline-flex", "BtnGroup");
   buttonsGroup.id = "vscgh-buttons";
 
   const leftButton = generateButton(
