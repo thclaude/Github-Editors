@@ -48,6 +48,11 @@ const getCloneURL = () => {
   return `vscode://vscode.git/clone?url=${currentRepo}.git`;
 };
 
+const getCodeSandboxURL = () => {
+  const currentRepo = getRepoURL();
+  return currentRepo.replace("github", "githubbox");
+};
+
 const getViewURL = () => {
   const currentRepo = getRepoURL();
   return currentRepo.replace("github", "github1s");
@@ -122,20 +127,26 @@ const generateButtonsGroup = (showJbButtons) => {
   buttonsGroup.classList.add("ml-2", "mr-2", "d-inline-flex", "BtnGroup");
   buttonsGroup.id = "vscgh-buttons";
 
-  const leftButton = generateButton(
+  const vscodeButton = generateButton(
     "right",
     ICONS.vscode,
     getCloneURL(),
     "Clone in VSCode"
   );
-  const rightButton = generateButton(
+  const github1sButton = generateButton(
     "left",
     ICONS.github,
     getViewURL(),
     "Open in GitHub1s"
   );
+  const codesandboxButton = generateButton(
+    "all",
+    ICONS.codesandbox,
+    getCodeSandboxURL(),
+    "Open in CodeSandbox"
+  );
 
-  buttonsGroup.append(leftButton);
+  buttonsGroup.append(vscodeButton);
 
   if (showJbButtons) {
     const jetbrainsButtons = generateJetbrainsButtons();
@@ -144,7 +155,8 @@ const generateButtonsGroup = (showJbButtons) => {
     );
   }
 
-  buttonsGroup.append(rightButton);
+  buttonsGroup.append(codesandboxButton);
+  buttonsGroup.append(github1sButton);
 
   return buttonsGroup;
 };
