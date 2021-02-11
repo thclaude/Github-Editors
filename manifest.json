@@ -1,17 +1,17 @@
 {
    "browser_action": {
       "default_icon": "img/logo.png",
-      "default_title": "GitHub - VSCode",
+      "default_title": "Github-Editors",
       "default_popup": "./options/options.html"
    },"content_scripts": [ {
       "js": [ "constants.js", "main.js" ],
       "matches": [ "https://github.com/*"]
    } ],
-   "description": "Adds useful buttons on repos' homepage to clone in VSCode or open in GitHub1s",
+   "description": "Adds useful buttons on repos' homepage like VSCode and Jetbrains' Suite cloning; GitHub1s and Codesandbox viewer.",
    "manifest_version": 2,
-   "name": "GitHub - VSCode",
-   "short_name": "GHVSCode",
-   "version": "0.1.2",
+   "name": "Github-Editors",
+   "short_name": "GHE",
+   "version": "0.2.0",
    "web_accessible_resources": [
       "img/*", "img/icons/*"
    ],

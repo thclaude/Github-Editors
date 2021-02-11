@@ -4,7 +4,7 @@ const saveOptions = () => {
     .checked;
   chrome.storage.sync.set({ showJetbrainsButtons }, function () {
     // Update status to let user know options were saved.
-    const status = document.getElementById("vscgh-status");
+    const status = document.getElementById("ghe-status");
     status.innerText = "Saved";
     setTimeout(() => {
       status.innerText = "";
@@ -37,7 +37,7 @@ const restoreOptions = () => {
 document.addEventListener("DOMContentLoaded", restoreOptions);
 
 document
-  .getElementById("vscgh-save-button")
+  .getElementById("ghe-save-button")
   .addEventListener("click", saveOptions);
 
 document

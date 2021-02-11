@@ -67,7 +67,7 @@ const getNavbarLastElementChild = () => {
 const isAlreadyAdded = () => {
   const lastNavbarChild = getNavbarLastElementChild();
   if (!lastNavbarChild) return null;
-  return lastNavbarChild.querySelector("#vscgh-buttons") !== null;
+  return lastNavbarChild.querySelector("#ghe-buttons") !== null;
 };
 
 const getCodeButton = () => {
@@ -125,7 +125,7 @@ const generateJetbrainsButtons = () => {
 const generateButtonsGroup = (showJbButtons) => {
   const buttonsGroup = document.createElement("div");
   buttonsGroup.classList.add("ml-2", "mr-2", "d-inline-flex", "BtnGroup");
-  buttonsGroup.id = "vscgh-buttons";
+  buttonsGroup.id = "ghe-buttons";
 
   const vscodeButton = generateButton(
     "right",
