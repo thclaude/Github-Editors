@@ -1,0 +1,40 @@
+#ghe-status{
+    color: rgb(0, 194, 0);
+    margin-right: 10px;
+}
+
+body {
+    width: 200px;
+    height: 145px;
+    display: flex;
+    flex-direction: column;
+    background-color: #424242;
+}
+
+body h2{
+    color: white;
+}
+
+.form-line{
+    display: inline-flex;
+    color: #c3c3c3;
+}
+
+#show-jetbrains-buttons{
+    margin-left: 10px;
+}
+
+#ghe-save-button{
+    border-radius: 3px;
+    border-style: none;
+    padding: 3px;
+    width: 50px;
+    background-color: #9bd3f7;
+}
+
+footer {
+    display: inline-flex;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: flex-end;
+}

@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        #ghe-status{
-            color: green;
-        }
-        body {
-            width: 150px;
-            display: flex;
-            flex-direction: column;
-        }
-        .form-line{
-            display: inline-flex;
-        }
-    </style>
-    <title>GitHub - VSCode &bull; Options</title>
+    <link rel="stylesheet" href="options.css">
+    <title>Github-Editors &bull; Options</title>
 </head>
 <body>
-    <h2 id="title">Options</h2>
-    <label id="facex-maps-stats" for="show-jetbrains-buttons">Show JetBrains buttons ?</label>
-    <div class="form-line"><input type="checkbox" id="show-jetbrains-buttons"> <span id="show-jetbrains-buttons-status"></span></div>
+    <h2 id="title">Github-Editors &bull; Options</h2>
+    <div class="form-line">
+        <label id="facex-maps-stats" for="show-jetbrains-buttons">Show JetBrains buttons ?</label>
+        <input type="checkbox" id="show-jetbrains-buttons"> <span id="show-jetbrains-buttons-status"></span>
+    </div>
 
-    <div id="ghe-status"></div>
-    <button id="ghe-save-button">Save</button>
-
+    <footer>
+        <span id="ghe-status"></span>
+        <button id="ghe-save-button">Save</button>
+    </footer>
     <script src="options.js"></script>
 </body>
 </html>
