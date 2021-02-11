@@ -2,6 +2,8 @@
 
 Adds useful buttons on repos' homepage like VSCode and Jetbrains' Suite cloning; GitHub1s and Codesandbox viewer.
 
+⚠️ To use Jetbrains shortcuts you should have [Jetbrains Toolbox](https://www.jetbrains.com/toolbox-app/) installed on your machine
+
 ## Installation
 
 ℹ️ Currently on validation process to Chrome Store
