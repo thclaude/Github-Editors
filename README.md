@@ -6,9 +6,11 @@ Adds useful buttons on repos' homepage like VSCode and Jetbrains' Suite cloning;
 
 ## Installation
 
-ℹ️ Currently on validation process to Chrome Store
+### Chrome Store (easiest)
 
-### Unpacked method (easiest)
+https://chrome.google.com/webstore/detail/github-editors/djdgcpbdkcipjeaiipndkklnfgfmegna
+
+### Unpacked method
 
 - Get the repo
 - Go to Extensions' settings
