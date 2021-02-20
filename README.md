@@ -22,4 +22,4 @@ https://chrome.google.com/webstore/detail/github-editors/djdgcpbdkcipjeaiipndkkl
 ![Preview](https://s2.gifyu.com/images/preview-github.gif)
 
 ## Request a new editor
-If you want to add a new editor button, you can make an issue or a push request
+If you want to add a new editor button, you can make an issue or a pull request
