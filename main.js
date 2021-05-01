@@ -48,6 +48,11 @@ const getCloneURL = () => {
   return `vscode://vscode.git/clone?url=${currentRepo}.git`;
 };
 
+const getCloneURLVsCodium = () => {
+  const currentRepo = getRepoURL();
+  return `vscodium://vscode.git/clone?url=${currentRepo}.git`;
+};
+
 const getCodeSandboxURL = () => {
   const currentRepo = getRepoURL();
   return currentRepo.replace("github", "githubbox");
@@ -133,6 +138,12 @@ const generateButtonsGroup = (showJbButtons) => {
     getCloneURL(),
     "Clone in VSCode"
   );
+  const vscodiumButton = generateButton(
+    "all",
+    ICONS.vscodium,
+    getCloneURLVsCodium(),
+    "Clone in VSCodium"
+  );
   const github1sButton = generateButton(
     "left",
     ICONS.github,
@@ -147,6 +158,8 @@ const generateButtonsGroup = (showJbButtons) => {
   );
 
   buttonsGroup.append(vscodeButton);
+  buttonsGroup.append(vscodiumButton);
+
 
   if (showJbButtons) {
     const jetbrainsButtons = generateJetbrainsButtons();
